@@ -4,8 +4,80 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mollymawk · Devon folk band</title>
-<meta name="description" content="Mollymawk are a Devon-based folk band playing upbeat songs and tunes from England, America and Europe. Book us for pubs, festivals and events.">
-<link rel="icon" href="assets/headon-ink.svg" type="image/svg+xml">
+<meta name="description" content="Mollymawk are a Devon-based folk band playing upbeat songs and tunes from England, America and Europe. Book us for pubs, festivals and events across the South West.">
+<link rel="canonical" href="https://mollymawkband.com/">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/icon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta name="theme-color" content="#1F1D29">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Mollymawk">
+<meta property="og:title" content="Mollymawk · Devon folk band">
+<meta property="og:description" content="Upbeat songs and tunes from England, America and Europe. Book us for pubs, festivals and events across the South West.">
+<meta property="og:url" content="https://mollymawkband.com/">
+<meta property="og:image" content="https://mollymawkband.com/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Mollymawk playing accordion, guitar and fiddle in a wood-panelled cabin">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MusicGroup",
+  "name": "Mollymawk",
+  "url": "https://mollymawkband.com/",
+  "image": "https://mollymawkband.com/assets/og.jpg",
+  "genre": "Folk",
+  "email": "info@mollymawkband.com",
+  "foundingLocation": { "@type": "Place", "name": "Devon, England" },
+  "description": "Devon-based folk band playing upbeat songs and tunes from England, America and Europe."
+}
+</script>
+<!-- GIG-EVENTS:START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MusicEvent",
+  "name": "Mollymawk at Folk at the Oak, The Royal Oak",
+  "startDate": "2026-11-04T19:30",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "location": {
+    "@type": "Place",
+    "name": "Folk at the Oak, The Royal Oak",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Ashburton",
+      "addressCountry": "GB"
+    }
+  },
+  "performer": {
+    "@type": "MusicGroup",
+    "name": "Mollymawk",
+    "url": "https://mollymawkband.com/"
+  },
+  "organizer": {
+    "@type": "MusicGroup",
+    "name": "Mollymawk",
+    "url": "https://mollymawkband.com/"
+  },
+  "image": [
+    "https://mollymawkband.com/assets/og.jpg"
+  ],
+  "description": "Mollymawk, a Devon-based folk band, playing upbeat songs and tunes from England, America and Europe.",
+  "doorTime": "2026-11-04T19:30",
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "GBP",
+    "availability": "https://schema.org/InStock",
+    "url": "https://mollymawkband.com/#gigs"
+  }
+}
+</script>
+<!-- GIG-EVENTS:END -->
 <link rel="preload" href="assets/fonts/im-fell-english-sc-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <style>
   /* Fonts are served from this site (SIL Open Font License): IM Fell English SC, EB Garamond, Jost */
@@ -141,7 +213,6 @@
     </a>
     <nav class="site-nav navtype" aria-label="Main">
       <ul>
-        <li><a href="/" aria-current="page">Home</a></li>
         <li><a href="#gigs">Gigs</a></li>
         <li><a href="#watch">Watch</a></li>
         <li><a href="#about">About</a></li>
@@ -173,7 +244,7 @@
     <div class="text">
       <div id="enquiries-label" class="label">Enquiries</div>
       <div class="big">Book us now for pubs, festivals and events.</div>
-      <p class="small">We’re fully self-contained, with our own PA if needed.</p>
+      <p class="small">We play gigs and events anywhere in the South West, and we’re open to all festival bookings. We’re fully self-contained, with our own PA if needed.</p>
     </div>
     <a class="btn btn-gold navtype" href="#contact">Get in touch</a>
   </div>
@@ -182,11 +253,18 @@
 <section id="gigs" class="gigs wrap" aria-labelledby="gigs-title">
   <h2 id="gigs-title">Upcoming gigs</h2>
   <div class="rule"></div>
-  <ol id="gig-list" class="gig-list" hidden></ol>
-  <div id="coming-soon" class="coming-soon">
+<!-- GIGS:START -->
+  <ol id="gig-list" class="gig-list">
+    <li class="gig" data-date="2026-11-04">
+      <div class="date label">Wed 4 Nov</div>
+      <div><div class="place">Folk at the Oak, The Royal Oak, Ashburton</div><div class="note">Doors 7.30pm · Free entry</div></div>
+    </li>
+  </ol>
+  <div id="coming-soon" class="coming-soon" hidden>
     <div class="big">Coming soon</div>
     <p>New dates are on the way. Want us at your venue? <a href="#contact">Get in touch</a>.</p>
   </div>
+<!-- GIGS:END -->
 </section>
 
 <section id="watch" class="watch" aria-labelledby="watch-title">
@@ -246,44 +324,20 @@
   </div>
 </footer>
 
-<script src="gigs.js"></script>
 <script>
+// Gig rows are written into the page by build-gigs.js. This just hides any that have passed.
 (function () {
-  var days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   var now = new Date();
   var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-  var gigs = (window.MOLLYMAWK_GIGS || []).map(function (g) {
-    var p = String(g.date || "").split("-").map(Number);
-    return { g: g, d: new Date(p[0], (p[1] || 1) - 1, p[2] || 1) };
-  }).filter(function (x) {
-    return !isNaN(x.d) && x.d >= today;
-  }).sort(function (a, b) { return a.d - b.d; });
-
-  var list = document.getElementById("gig-list");
-  gigs.forEach(function (x) {
-    var g = x.g;
-    var li = document.createElement("li"); li.className = "gig";
-    var date = document.createElement("div"); date.className = "date label";
-    date.textContent = days[x.d.getDay()] + " " + x.d.getDate() + " " + months[x.d.getMonth()];
-    var mid = document.createElement("div");
-    var place = document.createElement("div"); place.className = "place";
-    place.textContent = [g.venue, g.town].filter(Boolean).join(", ");
-    var note = document.createElement("div"); note.className = "note";
-    note.textContent = [g.doors ? "Doors " + g.doors : "", g.price].filter(Boolean).join(" · ");
-    mid.appendChild(place); mid.appendChild(note);
-    li.appendChild(date); li.appendChild(mid);
-    if (g.tickets && /^https?:\/\//.test(g.tickets)) {
-      var a = document.createElement("a"); a.className = "tickets navtype";
-      a.href = g.tickets; a.textContent = "Tickets"; a.rel = "noopener";
-      li.appendChild(a);
-    }
-    list.appendChild(li);
+  var rows = document.querySelectorAll("#gig-list .gig");
+  var shown = 0;
+  rows.forEach(function (row) {
+    var p = (row.getAttribute("data-date") || "").split("-").map(Number);
+    var d = new Date(p[0], (p[1] || 1) - 1, p[2] || 1);
+    if (d < today) { row.remove(); } else { shown++; }
   });
-  if (gigs.length) {
-    list.hidden = false;
-    document.getElementById("coming-soon").hidden = true;
-  }
+  document.getElementById("gig-list").hidden = shown === 0;
+  document.getElementById("coming-soon").hidden = shown > 0;
   document.getElementById("year").textContent = now.getFullYear();
 })();
 </script>
