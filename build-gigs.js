@@ -30,7 +30,7 @@ const upcoming = parsed.filter((x) => x.dt.getTime() >= today);
 const rows = upcoming.map(({ g, dt }) => {
   const label = `${DAYS[dt.getUTCDay()]} ${dt.getUTCDate()} ${MONTHS[dt.getUTCMonth()]}`;
   const place = [g.venue, g.town].filter(Boolean).join(", ");
-  const note = [g.doors ? "Doors " + g.doors : "", g.price].filter(Boolean).join(" · ");
+  const note = [g.doors ? "Doors " + g.doors : g.start ? "From " + g.start : "", g.price].filter(Boolean).join(" · ");
   const tickets = /^https?:\/\//.test(g.tickets || "")
     ? `\n      <a class="tickets navtype" href="${esc(g.tickets)}" rel="noopener">Tickets</a>`
     : "";
@@ -58,7 +58,8 @@ const toTime = (doors) => {
   return `T${String(h).padStart(2, "0")}:${m[2] || "00"}`;
 };
 const events = upcoming.map(({ g }) => {
-  const time = toTime(g.doors);
+  const time = toTime(g.start || g.doors);
+  const doorTime = toTime(g.doors);
   const free = /free/i.test(g.price || "");
   const priceNum = (/£\s*(\d+(?:\.\d{1,2})?)/.exec(g.price || "") || [])[1];
   const ev = {
@@ -74,7 +75,7 @@ const events = upcoming.map(({ g }) => {
     image: ["https://mollymawkband.com/assets/og.jpg"],
     description: "Mollymawk, a Devon-based folk band, playing upbeat songs and tunes from England, America and Europe.",
   };
-  if (time) ev.doorTime = g.date + time;
+  if (doorTime) ev.doorTime = g.date + doorTime;
   if (free) ev.isAccessibleForFree = true;
   if (free || priceNum || g.tickets) {
     ev.offers = { "@type": "Offer", price: free ? "0" : priceNum || undefined, priceCurrency: "GBP", availability: "https://schema.org/InStock", url: g.tickets || "https://mollymawkband.com/#gigs" };
