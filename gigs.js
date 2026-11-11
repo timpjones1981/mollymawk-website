@@ -9,5 +9,7 @@ window.MOLLYMAWK_GIGS = [
   { date: "2027-04-25", venue: "The Millbrook Inn", town: "South Pool", doors: "", start: "3pm", price: "", tickets: "" },
   { date: "2027-06-27", venue: "The Millbrook Inn", town: "South Pool", doors: "", start: "3pm", price: "", tickets: "" },
   { date: "2027-08-01", venue: "The Millbrook Inn", town: "South Pool", doors: "", start: "3pm", price: "", tickets: "" },
-  { date: "2027-01-30", venue: "RNLI Fundraiser, The Newquay Inn", town: "Teignmouth", doors: "", start: "TBC", price: "", tickets: "" }
+  { date: "2027-01-30", venue: "RNLI Fundraiser, The Newquay Inn", town: "Teignmouth", doors: "", start: "TBC", price: "", tickets: "" },
+  { date: "2027-04-30", venue: "The Blue Anchor", town: "Brixham", doors: "", start: "9pm", price: "", tickets: "" },
+  { date: "2027-08-28", venue: "The Blue Anchor", town: "Brixham", doors: "", start: "3pm", price: "", tickets: "" }
 ];
