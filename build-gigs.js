@@ -30,7 +30,9 @@ const upcoming = parsed.filter((x) => x.dt.getTime() >= today);
 const rows = upcoming.map(({ g, dt }) => {
   const label = `${DAYS[dt.getUTCDay()]} ${dt.getUTCDate()} ${MONTHS[dt.getUTCMonth()]}`;
   const place = [g.venue, g.town].filter(Boolean).join(", ");
-  const note = [g.doors ? "Doors " + g.doors : g.start ? "From " + g.start : "", g.price].filter(Boolean).join(" · ");
+  const tbc = (t) => /^tbc$/i.test(String(t || "").trim());
+  const when = tbc(g.doors) || tbc(g.start) ? "Time TBC" : g.doors ? "Doors " + g.doors : g.start ? "From " + g.start : "";
+  const note = [when, g.price].filter(Boolean).join(" · ");
   const tickets = /^https?:\/\//.test(g.tickets || "")
     ? `\n      <a class="tickets navtype" href="${esc(g.tickets)}" rel="noopener">Tickets</a>`
     : "";
