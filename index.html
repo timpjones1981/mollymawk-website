@@ -347,6 +347,10 @@
   .coming-soon { border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: 40px 0; display: flex; flex-direction: column; gap: 8px; }
   .coming-soon .big { font-family: var(--display); font-size: 32px; line-height: 1.15; letter-spacing: 0.03em; }
   .coming-soon p { color: var(--muted); }
+  .gig.is-extra { display: none; }
+  .gig-list.is-open .gig.is-extra { display: grid; }
+  .gig-more { margin-top: 24px; }
+  .gig-more .count { color: var(--muted); font-weight: 400; letter-spacing: 0.08em; }
 
   /* Two-column sections */
   .split { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 64px; align-items: center; padding-top: 96px; padding-bottom: 96px; }
@@ -477,6 +481,9 @@
     <p>New dates are on the way. Want us at your venue? <a href="#contact">Get in touch</a>.</p>
   </div>
 <!-- GIGS:END -->
+  <div class="gig-more" id="gig-more-wrap" hidden>
+    <button type="button" class="btn btn-outline navtype" id="gig-more" aria-expanded="false" aria-controls="gig-list">Show all gigs <span class="count" id="gig-more-count"></span></button>
+  </div>
 </section>
 
 <section id="watch" class="watch" aria-labelledby="watch-title">
@@ -548,8 +555,27 @@
     var d = new Date(p[0], (p[1] || 1) - 1, p[2] || 1);
     if (d < today) { row.remove(); } else { shown++; }
   });
-  document.getElementById("gig-list").hidden = shown === 0;
+  var list = document.getElementById("gig-list");
+  list.hidden = shown === 0;
   document.getElementById("coming-soon").hidden = shown > 0;
+
+  // Show the next few gigs; the rest open with the button.
+  var FIRST = 4;
+  var left = list.querySelectorAll(".gig");
+  if (left.length > FIRST + 1) {
+    for (var i = FIRST; i < left.length; i++) left[i].classList.add("is-extra");
+    var btn = document.getElementById("gig-more");
+    var label = btn.firstChild;
+    document.getElementById("gig-more-count").textContent = "(" + left.length + ")";
+    document.getElementById("gig-more-wrap").hidden = false;
+    btn.addEventListener("click", function () {
+      var open = list.classList.toggle("is-open");
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+      label.nodeValue = open ? "Show fewer gigs " : "Show all gigs ";
+      document.getElementById("gig-more-count").hidden = open;
+      if (!open) document.getElementById("gigs").scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
   document.getElementById("year").textContent = now.getFullYear();
 })();
 </script>
